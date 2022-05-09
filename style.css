@@ -55,6 +55,13 @@
             cursor: pointer;
             color: #cbadbc;
             }
+        .active {
+            position: relative;
+            top: 1px;
+            left: 1px;
+            cursor: pointer;
+            color: #8c0909; 
+        }
             .capslock, .tab, .left-shift {
             clear: left;
             }

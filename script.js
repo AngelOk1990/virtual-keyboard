@@ -13,6 +13,7 @@ constructor({small, shift, keycode}) {
 create() {
     const key = document.createElement('li')
     key.classList.add('keyboard__key')
+    key.dataset.keycode = this.keycode
 
     switch (this.keycode) {
         case 'Space':
@@ -62,10 +63,11 @@ const createAllElements = () => {
    text.classList.add('text')
    text.innerHTML = 
    `<p>Клавиатура создана в операционной системе Windows</p>
-   <p>Сочетание клавиш</p>`
+   <p></p>`
    container.append(text)
    container.append(textarea)
-   container.append(createKeyboard(layoutEn))
+   const keyboard = (createKeyboard(layoutEn, textarea))
+   container.append(keyboard)
 
    document.body.append(container)
 }
@@ -73,7 +75,7 @@ const createAllElements = () => {
 createAllElements()
 
 //Создаем клавиатуру на английской раскладке
-function createKeyboard(lang) {
+function createKeyboard(lang, textarea) {
     const keyboard = document.createElement('div')
     keyboard.classList.add('keyboard')
 
@@ -87,5 +89,56 @@ function createKeyboard(lang) {
         })
         keyboard.append(row)
     })
+    keyboard.addEventListener('mousedown', (e) => {
+        
+            e.target.classList.add('active')
+            eventsHandlerOnKeyboard(e, textarea)
+        
+    })
+    keyboard.addEventListener('mouseup', (e) => {
+            e.target.classList.remove('active')
+    })
+    keyboard.addEventListener('keydown', (e) => {
+        e.preventDefault()
+            e.target.classList.add('active')
+            eventsHandlerOnKeyboard(e, textarea)
+        
+    })
+    keyboard.addEventListener('keyup', (e) => {
+            e.target.classList.remove('active')
+    
+    })
+
     return keyboard
+}
+
+//Создаем обработчик событий
+
+function eventsHandlerOnKeyboard(event, textarea) {
+    switch (event.target.dataset.keycode) {
+        case 'Space':
+            textarea.value += ' '
+            break
+        case 'Backspace':
+            textarea.value = textarea.value.substring(0, textarea.value.length-1)
+            break
+        case 'Tab':
+            
+            break
+        case 'CapsLock':
+            textarea.value += textarea.value.toUpperCase()
+                break
+            case 'Enter':
+            
+            break
+        case 'ShiftLeft':
+            
+            break
+        case 'ShiftRight':
+            
+            break
+            default:
+                textarea.value += event.target.innerHTML
+               
+    }
 }
