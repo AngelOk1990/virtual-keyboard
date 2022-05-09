@@ -1,66 +1,91 @@
-const div = document.createElement('div')
-const textarea = document.createElement('textarea')
-const ul = document.createElement('ul')
+import layout from './layout.js';
+const layoutRu = layout.ru
+const layoutEn = layout.en
 
+//Создаем кнопки
+class CreateKey {
+constructor({small, shift, keycode}) {
+    this.small = small;
+    this.shift = shift;
+    this.keycode = keycode;
+}
 
-div.className = 'container'
-textarea.className = 'field'
-ul.className = 'keyboard'
+create() {
+    const key = document.createElement('li')
+    key.classList.add('keyboard__key')
 
-document.body.append(div)
-div.append(textarea, ul)
-ul.innerHTML = `<li class="symbol"><span class="off"></span><span class="on">~</span></li>
-<li class="symbol"><span class="off">1</span><span class="on">!</span></li>
-<li class="symbol"><span class="off">2</span><span class="on">@</span></li>
-<li class="symbol"><span class="off">3</span><span class="on">#</span></li>
-<li class="symbol"><span class="off">4</span><span class="on">$</span></li>
-<li class="symbol"><span class="off">5</span><span class="on">%</span></li>
-<li class="symbol"><span class="off">6</span><span class="on">^</span></li>
-<li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
-<li class="symbol"><span class="off">8</span><span class="on">*</span></li>
-<li class="symbol"><span class="off">9</span><span class="on">(</span></li>
-<li class="symbol"><span class="off">0</span><span class="on">)</span></li>
-<li class="symbol"><span class="off">-</span><span class="on">_</span></li>
-<li class="symbol"><span class="off">=</span><span class="on">+</span></li>
-<li class="backspace lastitem">Backspace</li>
-<li class="tab">Tab</li>
-<li class="letter">q</li>
-<li class="letter">w</li>
-<li class="letter">e</li>
-<li class="letter">r</li>
-<li class="letter">t</li>
-<li class="letter">y</li>
-<li class="letter">u</li>
-<li class="letter">i</li>
-<li class="letter">o</li>
-<li class="letter">p</li>
-<li class="symbol"><span class="off">[</span><span class="on">{</span></li>
-<li class="symbol"><span class="off">]</span><span class="on">}</span></li>
-<li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
-<li class="capslock">Caps Lock</li>
-<li class="letter">a</li>
-<li class="letter">s</li>
-<li class="letter">d</li>
-<li class="letter">f</li>
-<li class="letter">g</li>
-<li class="letter">h</li>
-<li class="letter">j</li>
-<li class="letter">k</li>
-<li class="letter">l</li>
-<li class="symbol"><span class="off">;</span><span class="on">:</span></li>
-<li class="symbol"><span class="off">'</span><span class="on">&quot;</span></li>
-<li class="enter lastitem">Enter</li>
-<li class="left-shift">Shift</li>
-<li class="letter">z</li>
-<li class="letter">x</li>
-<li class="letter">c</li>
-<li class="letter">v</li>
-<li class="letter">b</li>
-<li class="letter">n</li>
-<li class="letter">m</li>
-<li class="symbol"><span class="off">,</span><span class="on">&lt;</span></li>
-<li class="symbol"><span class="off">.</span><span class="on">&gt;</span></li>
-<li class="symbol"><span class="off">/</span><span class="on">?</span></li>
-<li class="right-shift lastitem">Shift</li>
-<li class="space lastitem">&nbsp;</li>`
+    switch (this.keycode) {
+        case 'Space':
+            key.classList.add('space')
+            key.innerText = this.small
+            break
+        case 'Backspace':
+            key.classList.add('backspace')
+            key.innerText = this.small
+            break
+        case 'Tab':
+            key.classList.add('tab')
+            key.innerText = this.small
+            break
+        case 'CapsLock':
+                key.classList.add('capslock')
+                key.innerText = this.small
+                break
+            case 'Enter':
+            key.classList.add('enter')
+            key.innerText = this.small
+            break
+        case 'ShiftLeft':
+            key.classList.add('shift-left')
+            key.innerText = this.small
+            break
+        case 'ShiftRight':
+            key.classList.add('shift-right')
+            key.innerText = this.small
+            break
+            default:
+                key.classList.add('symbol')
+                key.innerText = this.small
+    }
+    return key
+}
+}
+// Создаем всё приложение
+const createAllElements = () => {
+    const container = document.createElement('div')
+    container.classList.add('container')
 
+    const textarea = document.createElement('textarea')
+   textarea.classList.add('field')
+
+   const text = document.createElement('div')
+   text.classList.add('text')
+   text.innerHTML = 
+   `<p>Клавиатура создана в операционной системе Windows</p>
+   <p>Сочетание клавиш</p>`
+   container.append(text)
+   container.append(textarea)
+   container.append(createKeyboard(layoutEn))
+
+   document.body.append(container)
+}
+
+createAllElements()
+
+//Создаем клавиатуру на английской раскладке
+function createKeyboard(lang) {
+    const keyboard = document.createElement('div')
+    keyboard.classList.add('keyboard')
+
+    lang.forEach((rows) => {
+        const row = document.createElement('ul')
+        row.classList.add('row')
+
+        rows.forEach((key) => {
+            const keyboardKey = new CreateKey(key)
+            row.append(keyboardKey.create())
+        })
+        keyboard.append(row)
+    })
+    return keyboard
+}

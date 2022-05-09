@@ -21,10 +21,12 @@
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     }
-    .keyboard {
+    .row {
     padding: 0;
     list-style: none;
-      
+    }
+    .keyboard {
+        padding: 0;
     }
     li {
          margin-top: 5px;
@@ -46,6 +48,13 @@
               -6px 5px rgb(47,48,51), -6px 6px rgb(27,27,29)
         
         }
+        li:hover {
+            position: relative;
+            top: 1px;
+            left: 1px;
+            cursor: pointer;
+            color: #cbadbc;
+            }
             .capslock, .tab, .left-shift {
             clear: left;
             }
@@ -72,16 +81,19 @@
             text-transform: uppercase;
             }
    .space {
-            width: 670px;
+            width: 440px;
         margin-bottom: 20px;
             }
             .on {
             display: none;
             }
-            li:hover {
-            position: relative;
-            top: 1px;
-            left: 1px;
-            cursor: pointer;
-            color: #cbadbc;
-            }
+        .text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+    .shift-left, .shift-right {
+        width: 102px;
+    }
