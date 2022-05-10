@@ -300,21 +300,7 @@ en: [
     shift: null,
     keycode: 'AltRight',
   },
-  // {
-  //   small: 'ArrowLeft',
-  //   shift: null,
-  //   keycode: 'ArrowLeft',
-  // },
-  // {
-  //   small: 'ArrowDown',
-  //   shift: null,
-  //   keycode: 'ArrowDown',
-  // },
-  // {
-  //   small: 'ArrowRight',
-  //   shift: null,
-  //   keycode: 'ArrowRight',
-  // },
+ 
   {
     small: 'Ctrl',
     shift: null,
@@ -587,11 +573,7 @@ ru: [
     shift: ',',
     keycode: 'Slash',
   },
-  // {
-  //   small: 'ArrowUp',
-  //   shift: null,
-  //   keycode: 'ArrowUp',
-  // },
+  
   {
     small: 'Shift',
     shift: null,
@@ -623,21 +605,7 @@ ru: [
     shift: null,
     keycode: 'AltRight',
   },
-  // {
-  //   small: 'ArrowLeft',
-  //   shift: null,
-  //   keycode: 'ArrowLeft',
-  // },
-  // {
-  //   small: 'ArrowDown',
-  //   shift: null,
-  //   keycode: 'ArrowDown',
-  // },
-  // {
-  //   small: 'ArrowRight',
-  //   shift: null,
-  //   keycode: 'ArrowRight',
-  // },
+  
   {
     small: 'Ctrl',
     shift: null,
